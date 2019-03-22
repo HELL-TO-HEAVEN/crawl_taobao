@@ -1,7 +1,7 @@
 # crawl_taobao
 用selenium+pyquery爬取淘宝自定义商品的信息，同时保存到MongoDB<br>
 -------
-分为<font color=red>单进程爬取（CRAWL.py）`与`多进程爬取`</font>
+分为<font color=red>单进程爬取（CRAWL.py）与多进程爬取</font>
 
 
 ## 补充：
