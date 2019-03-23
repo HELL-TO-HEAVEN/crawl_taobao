@@ -2,12 +2,12 @@
 用selenium+pyquery爬取淘宝自定义商品的信息，同时保存到MongoDB，后续进行数据分析<br>
 -------
 
-考虑分为`单进程爬取（CRAWL.py）`与`多进程爬取（这个还在考虑中：如何构造淘宝的请求url）`
+考虑分为`单进程爬取（CRAWL.py）`与`多进程爬取（如何构造淘宝的请求url是关键点）`
 
 ************
 
 ## 补充：
-    1、强推多进程爬取；
+    1、强推多进程爬取，20秒100页（在没有渲染的情况下）；
     2、在代码里能看到有很多cookies，这些都是为了对付淘宝的登录操作，而淘宝的cookies有很多个，于是通过一个很好的插件 <font color=red>EditThisCookie</font> 把所有的cookies都按照序号导出来，这里有个问题就是导出的cookies字典有些地方不是字符串形式，所以我再通过两行代码把不是字符串的地方（e.g. false和true）变成字符串；
 
     3、由于一些大型网站都具有较强反扒的能力，淘宝网站就能通过某些机制判断是否是selenium控制浏览器，比如<font color=red>参数 window.navigator.webdriver，若为true则证明有selenium，undefined就没有
@@ -39,10 +39,9 @@
         
  <br>
  *******************
- <br>
-多进程花了20秒，因为直接用requests请求url（通过规律找出），而这个url页面打开后发现是 jsonp 类型，毫无渲染
+多进程花了20秒，因为直接用requests请求url（通过规律找出），而这个url页面打开后发现是 jsonp 类型，毫无渲染<br>
  ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/url%E9%A1%B5%E9%9D%A2.png)
- <br>
+
  ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/multi_result.png)
         
 
