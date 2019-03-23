@@ -24,15 +24,26 @@
 
 ## 更新：
         通过分析源码，network请求等等，发现了多进程请求的网页url的构造方法（打开后很惊讶的发现是jsonp类型的，很好爬取，直接用json的方法，最多结合一下正则表达式就获得了商品信息，不过让人怀疑是不是淘宝是不是用来误导爬虫的）,注意构造时有个jsonp参数，把他删去即可得到json类型，因此我构造的url是没有jsonp参数的
-《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《
+ ![url在这里](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/%E5%AF%BB%E6%89%BEurl.png)
+ <br>
+ 可以看到左边的search?data-key=xxxx&data-value=xxxx，（为了可观性，方便找到url，可选择右键Name，domain），能看到44、88、 132的数字，证明一次页面就改变44， 另外还有参数bcoffset、 ntoffset，通过等差数列构造。
+ <br>
+ 特别是有个_ksTS参数，那个明显就是时间戳，只不过记忆里时间戳要不是13位的，要不就是16位的，这个参数却是 13位_4位类型的。好奇心驱使试了一下打印time.time, 发现的确是17位浮点数，那就好办咯～
+ <br>
+《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《
  
  结果：
 -------------
 单进程花了16分钟，原因分析应该是因为用的是selenium，页面要渲染，同时也加了几个time.sleep;<br>
         ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/single_result.png)
         
-        
+ <br>
+ *******************
+ <br>
 多进程花了20秒，因为直接用requests请求url（通过规律找出），而这个url页面打开后发现是 jsonp 类型，毫无渲染<br>
         ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/url%E9%A1%B5%E9%9D%A2.png)
         ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/multi_result.png)
+        
+<br>
+接下来进行数据分析
         
