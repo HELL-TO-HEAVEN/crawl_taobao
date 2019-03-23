@@ -23,7 +23,15 @@
 ***************
 
 ## 更新：
-        通过分析源码，network请求等等，发现了请求的网页url的构造方法（打开后很惊讶的发现是jsonp类型的，很好爬取，直接用json的方法，最多结合一下正则表达式就获得了商品信息，不过让人怀疑是不是淘宝是不是用来误导爬虫的）
-        
+        通过分析源码，network请求等等，发现了请求的网页url的构造方法（打开后很惊讶的发现是jsonp类型的，很好爬取，直接用json的方法，最多结合一下正则表达式就获得了商品信息，不过让人怀疑是不是淘宝是不是用来误导爬虫的）,注意构造时有个jsonp参数，把他删去即可得到json类型，因此我构造的url是没有jsonp参数的<br>
+        《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《《
         结果：
+        
+        单进程花了16分钟，原因分析应该是因为用的是selenium，页面要渲染，同时也加了几个time.sleep;<br>
+        ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/single_result.png)
+        
+        
+        多进程花了20秒，因为直接用requests请求url（通过规律找出），而这个url页面打开后发现是 jsonp 类型，毫无渲染<br>
+        ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/url%E9%A1%B5%E9%9D%A2.png)
+        ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/multi_result.png)
         
