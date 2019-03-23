@@ -40,10 +40,11 @@
  <br>
  *******************
  <br>
-多进程花了20秒，因为直接用requests请求url（通过规律找出），而这个url页面打开后发现是 jsonp 类型，毫无渲染<br>
-        ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/url%E9%A1%B5%E9%9D%A2.png)
-        ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/multi_result.png)
+多进程花了20秒，因为直接用requests请求url（通过规律找出），而这个url页面打开后发现是 jsonp 类型，毫无渲染
+ ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/url%E9%A1%B5%E9%9D%A2.png)
+ <br>
+ ![如图](https://github.com/HELL-TO-HEAVEN/crawl_taobao/blob/master/multi_result.png)
         
-<br>
+
 接下来进行数据分析
         
